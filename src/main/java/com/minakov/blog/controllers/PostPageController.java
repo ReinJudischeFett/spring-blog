@@ -19,16 +19,20 @@ import java.util.List;
 
 @Controller
 public class PostPageController {
-    @Autowired
+
     private PostRepository postRepository;
-
-    @Autowired
     private CommentRepository commentRepository;
-
-    @Autowired
     private PostService postService;
 
-    @GetMapping("/post/{id}") // +
+    @Autowired
+    public PostPageController(PostRepository postRepository, CommentRepository commentRepository, PostService postService) {
+        this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
+        this.postService = postService;
+    }
+
+
+    @GetMapping("/post/{id}")
     public String post(@PathVariable("id") long id,
                        Model model,
                        @AuthenticationPrincipal User user,

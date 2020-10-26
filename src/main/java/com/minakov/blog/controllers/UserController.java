@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class UserController {
+
+    private UserRepository userRepository;
+
     @Autowired
-    UserRepository userRepository;
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/user/{id}")
     public String userPage(@PathVariable Long id, Model model){

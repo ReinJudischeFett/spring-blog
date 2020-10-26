@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -27,21 +27,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .csrf()
                     .disable()
                     .authorizeRequests()
-                    //Доступ только для не зарегистрированных пользователей
                     .antMatchers("/registration").not().fullyAuthenticated()
-                    //Доступ только для пользователей с ролью Администратор
-                   // .antMatchers("/admin/**").hasRole("ADMIN")
-                   // .antMatchers("/addHaiku").hasRole("USER")
-                   // .antMatchers("/aditHaiku").hasRole("USER")
-                //Доступ разрешен всем пользователей
                     .antMatchers("/all-posts", "/post/**" , "/user/**").permitAll()
-                    //Все остальные страницы требуют аутентификации
                     .anyRequest().authenticated()
                 .and()
-                //Настройка для входа в систему
                     .formLogin()
                     .loginPage("/login")
-                    //Перенарпавление на главную страницу после успешного входа
                     .defaultSuccessUrl("/")
                     .permitAll()
                 .and()

@@ -21,16 +21,19 @@ import java.util.*;
 
 @Controller
 public class MainController {
-    @Autowired
+
     private PostRepository postRepository;
-
-    @Autowired
     private CommentRepository commentRepository;
-
-    @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/") // +
+    @Autowired
+    public MainController(PostRepository postRepository, CommentRepository commentRepository, UserRepository userRepository) {
+        this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
+        this.userRepository = userRepository;
+    }
+
+    @GetMapping("/")
     public String homePage(Model model){
 
         List<Post> list = postRepository.findAll();
@@ -40,19 +43,19 @@ public class MainController {
         return "home";
     }
 
-    @GetMapping("/all-posts") // +
+    @GetMapping("/all-posts")
     public String blog(Model model){
-            Iterable<Post> post = postRepository.findAll();  // WHY ITERABLE ?
+            Iterable<Post> post = postRepository.findAll();
             model.addAttribute("postList", post);
         return "all-posts";
     }
 
-     @GetMapping("post/add") // +
+     @GetMapping("post/add")
      public String addHaikuForm(Post post){
      return "post-control/add-post";
      }
 
-     @PostMapping("post/add") // +
+     @PostMapping("post/add")
      public String addHaiku(@AuthenticationPrincipal User user,
                             @Valid Post post,
                             BindingResult bindingResult){
@@ -70,7 +73,7 @@ public class MainController {
              return "redirect:/all-posts";
      }
 
-     @PostMapping("search") // +
+     @PostMapping("search")
     public String search(@RequestParam("searchingText") String searchingText,
                          Model model){
         List<Post> list = postRepository.findAll();

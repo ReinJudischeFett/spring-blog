@@ -27,13 +27,13 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Post> posts; // postList - > posts
+    private List<Post> posts;
 
     @ManyToMany(mappedBy = "viewers" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Post> viewed;
+    private List<Post> viewed;  // TO SET
     @ManyToMany(mappedBy = "likes" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Post> liked;
-    private String date;     // to Date
+    private List<Post> liked; // TO SET
+    private String date;     // TO DATE
 
 
 
@@ -71,7 +71,5 @@ public class User implements UserDetails {
     public String toString() {
         return username;
     }
-   // public void addHaikuToList(Post post){
-    //    postList.add(post);
-    //}
+
 }

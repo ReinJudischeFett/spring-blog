@@ -4,6 +4,14 @@
 
 
 
+
+
+
+
+
+
+
+
 <div th:fragmet="header">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom shadow-sm">
         <h3 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-white" href="/">Lorem blog</a></h3>
@@ -18,12 +26,6 @@
             <a sec:authorize="!isAuthenticated()" class="p-2 text-white" href="/login">Login</a>
             <a sec:authorize="!isAuthenticated()" class="p-2 text-white" href="/registration">Registration</a>
             <a sec:authorize="isAuthenticated()" class="p-2 text-white" href="/logout">Sign out</a>
-
-
-
-
-
-
         </nav>
     </div>
 </div>

@@ -41,17 +41,6 @@ public class Post {
     @ManyToMany
     private List<User> likes;
 
-    /**
-     * public Haiku() {
-     * }
-     * <p>
-     * public Haiku(String tittle, String fullText, String author) {
-     * this.tittle = tittle;
-     * this.fullText = fullText;
-     * this.author = author;
-     * likes = 0;
-     * <p>
-     * }
-     **/
+
 
 }

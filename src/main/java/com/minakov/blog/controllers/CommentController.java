@@ -18,8 +18,8 @@ import javax.validation.Valid;
 @Controller
 public class CommentController {
 
-    PostRepository postRepository;
-    CommentRepository commentRepository;
+    private PostRepository postRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
     public CommentController(PostRepository postRepository,CommentRepository commentRepository){
@@ -27,7 +27,7 @@ public class CommentController {
         this.postRepository = postRepository;
     }
 
-    @PostMapping("/post/{id}/comment")// +
+    @PostMapping("/post/{id}/comment")
     public String comment(@PathVariable("id") long id,
                           @AuthenticationPrincipal User user,
                           @Valid Comment comment,
@@ -49,7 +49,7 @@ public class CommentController {
         return "redirect:/post/" + id;
     }
 
-    @PostMapping("/comment/{id}/remove") // +   ADD /post/{id}/comment to the path
+    @PostMapping("/comment/{id}/remove")
     public String comment(@PathVariable("id") long id){
         Post post = commentRepository.findById(id).get().getPost();
         commentRepository.delete(commentRepository.findById(id).get());
