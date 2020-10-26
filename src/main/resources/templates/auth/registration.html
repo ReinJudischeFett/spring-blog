@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Registration </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="blocks/header"/>
+<div class="container mt-5">
+    <h3>registration</h3>
+    <form action="/registration" th:object="${user}" method="POST">
+        <th th:text="${passwordError}"></th>
+        <th th:text="${usernameError}"></th>
+        <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Age Error</td>
+        <input minlength="5" required type="text"  th:field="*{username}" placeholder="username" class="form-control"/><br>
+
+        <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Age Error</td>
+        <input minlength="5" required type="password" th:field="*{password}" placeholder="password" class="form-control"/><br>
+
+        <td th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">Age Error</td>
+        <input minlength="5" required type="password" th:field="*{passwordConfirm}" placeholder="password confirm" class="form-control"></input><br>
+
+        <button type="submit" class="btn btn-success">Register</button>
+        <button type="reset" class="btn btn-reset">Clear</button>
+    </form>
+</div>
+</body>
+</html>

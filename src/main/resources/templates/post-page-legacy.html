@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Post</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+<div th:insert="blocks/header"/>
+
+
+<div class="alert alert-info mt-2">
+    <h2 th:text="${post.tittle}"></h2>
+    <h4 th:text="${post.fullText}"/>
+
+    <p>Author <a th:href="'/user/' + ${post.user.id}" th:text="${post.user.username}"/></p>
+    <p>Viewed by : <span th:text="${post.viewers}"/></p>
+    <p>Liked by : <span th:text="${post.likes}"/></p>
+
+    <p th:text="${post.date}"> <p th:if="${post.edited == true}">(EDITED)</p> </p>
+    <a th:if="${post.user.username == #authentication.name}" th:href="'/post/' + ${post.id} + '/edit'" class="btn btn-warning">redact</a><br>
+    <form  th:action="'/post/' + ${post.id} + '/like'" method="POST">
+        <button  class="btn btn-warning">like</button>
+    </form>
+    <form th:if="${post.user.username == #authentication.name} " th:action="'/post/' + ${post.id} + '/remove'" method="POST">
+        <button  class="btn btn-warning">remove</button>
+    </form><br><br>
+
+   <form th:action="'/post/' + ${post.id} + '/comment'" th:object="${comment}" method="POST">
+
+       <td th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Age Error</td>
+       <textarea minlength="3" required th:field="*{text}" placeholder="comment text"  class="form-control"></textarea><br>
+
+        <button type="submit" class="btn btn-success">Add</button>
+        <button type="reset" class="btn btn-reset">Clear</button>
+    </form>
+
+
+    <div th:each="comment : ${comments}" class="alert alert-info mt-2">
+        <h4><a th:href="'/user/' + ${comment.user.id}" th:text="${comment.user.username}"/></h4>
+        <p th:text="${comment.text}"/>
+
+        <form th:if="${comment.user.username == #authentication.name}" th:action="'/comment/' + ${comment.id} + '/remove'" method="POST">     <!-- NB PO DRUGOMY https://www.thymeleaf.org/doc/articles/springsecurity.html -->
+            <button  class="btn btn-warning">remove</button>
+        </form>
+    </div>
+
+
+
+
+
+</div>
+
+</body>
+</html>

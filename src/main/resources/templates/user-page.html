@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>User page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+<div th:insert="blocks/header"/>
+
+<main role="main">
+    <div class="album py-5 bg-light">
+
+        <div class="container">
+            <div class="d-flex justify-content-between">
+            <h2  th:text="'User ' + ${user.username}"></h2>
+            <h4 th:text="'reg date ' + ${user.date}"/>
+            </div>
+<hr>
+
+            <div class="row">
+                <div class="container mt-5">
+                    <h5>Created posts by user</h5>
+                    <div th:each="post : ${user.posts}" class="alert alert-info mt-2">
+                            <h3 th:text="${post.tittle}"/>
+                            <p th:text="${post.fullText}"/>
+                            <a th:href="'/post/' + ${post.id}">more</a>
+                       </div>
+                </div>
+            </div>
+            <hr>
+
+           <div class="row">
+                <div class="container mt-5">
+                    <h5>Viewed posts by user</h5>
+                    <div th:each="post : ${user.viewed}" class="alert alert-info mt-2">
+                            <h3 th:text="${post.tittle}"/>
+                            <p th:text="${post.fullText}"/>
+                            <a th:href="'/post/' + ${post.id}">more</a>
+                        </div>
+                </div>
+           </div>
+            <hr>
+
+                <div class="row">
+                    <div class="container mt-5">
+                        <h5>Liked posts by user</h5>
+                        <div th:each="post : ${user.liked}" class="alert alert-info mt-2">
+                            <h3 th:text="${post.tittle}"/>
+                            <p th:text="${post.fullText}"/>
+                            <a th:href="'/post/' + ${post.id}">more</a>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+    </div>
+</main>
+</div>
+</body>
+</html>

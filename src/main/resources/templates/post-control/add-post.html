@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Add post</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+<div th:insert="blocks/header"/>
+<div class="container mt-5">
+    <form action="/post/add" th:object="${post}" method="POST">
+
+        <td th:if="${#fields.hasErrors('tittle')}" th:errors="*{tittle}">Age Error</td>
+        <input minlength="3" required type="text"  th:field="*{tittle}" placeholder="Post name" class="form-control"/><br>
+
+        <td th:if="${#fields.hasErrors('fullText')}" th:errors="*{fullText}">Age Error</td>
+        <textarea minlength="50" required th:field="*{fullText}" placeholder="Post text" class="form-control"></textarea><br>
+
+        <button type="submit" class="btn btn-success">Add</button>
+        <button type="reset" class="btn btn-reset">Clear</button>
+    </form>
+</div>
+
+</body>
+</html>

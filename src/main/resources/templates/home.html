@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Blog </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:insert="blocks/header"/>
+<main role="main">
+
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="container mt-5">
+
+                        <div  class="alert alert-info mt-2">
+                            <h3 th:text="${postList.get(0).tittle}"/>
+                            <p th:text="${postList.get(0).fullText}"/>
+                            <a th:href="'/post/' + ${postList.get(0).id}">more</a>
+                        </div>
+                        <div  class="alert alert-info mt-2">
+                            <h3 th:text="${postList.get(1).tittle}"/>
+                            <p th:text="${postList.get(1).fullText}"/>
+                            <a th:href="'/post/' + ${postList.get(1).id}">more</a>
+                        </div>
+                        <div  class="alert alert-info mt-2">
+                            <h3 th:text="${postList.get(2).tittle}"/>
+                            <p th:text="${postList.get(2).fullText}"/>
+                            <a th:href="'/post/' + ${postList.get(2).id}">more</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</main>
+
+</body>
+</html>

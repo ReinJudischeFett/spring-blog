@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Spring Security Example </title>
+</head>
+<body>
+<div th:insert="blocks/header"/>
+<div class="container mt-5">
+    <h3>login</h3>
+    <form th:action="@{/login}"  method="POST">
+        <div class="error" th:if="${param.error}">
+            Invalid username or password
+        </div>
+        <input minlength="5" required type="text"  name="username" placeholder="username" class="form-control"/><br>
+
+        <input minlength="5" required type="password" name="password" placeholder="password" class="form-control"/><br>
+
+
+        <button type="submit" class="btn btn-success">Sign in</button>
+        <button type="reset" class="btn btn-reset">Clear</button>
+    </form>
+</div>
+</body>
+</html>

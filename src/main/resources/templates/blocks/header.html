@@ -1,0 +1,29 @@
+
+
+
+
+
+
+<div th:fragmet="header">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom shadow-sm">
+        <h3 class="my-0 mr-md-auto font-weight-normal"><a class="p-2 text-white" href="/">Lorem blog</a></h3>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <form action="/search"  method="POST">
+                <input type="text" name="searchingText" placeholder="type smth... " class="form-control">
+            </form>
+            <a class="p-2 text-white" href="/">Top posts</a>
+            <a class="p-2 text-white" href="/all-posts">All posts</a>
+            <a sec:authorize="isAuthenticated()" class="p-2 text-white" href="/post/add">Add post</a>
+            <a sec:authorize="!isAuthenticated()" class="p-2 text-white" href="/login">Add post</a>
+            <a sec:authorize="!isAuthenticated()" class="p-2 text-white" href="/login">Login</a>
+            <a sec:authorize="!isAuthenticated()" class="p-2 text-white" href="/registration">Registration</a>
+            <a sec:authorize="isAuthenticated()" class="p-2 text-white" href="/logout">Sign out</a>
+
+
+
+
+
+
+        </nav>
+    </div>
+</div>
